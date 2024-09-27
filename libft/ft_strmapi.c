@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guigonza <guigonza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: guigonza <guigonza@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/18 14:13:18 by guigonza          #+#    #+#             */
-/*   Updated: 2024/09/19 19:29:39 by guigonza         ###   ########.fr       */
+/*   Created: 2024/09/25 12:28:39 by guigonza          #+#    #+#             */
+/*   Updated: 2024/09/26 13:36:31 by guigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t	i;
+	char			*result;
+	unsigned int	i;
 
 	i = 0;
-	if (n == 0)
-		return ;
-	while (i < n)
+	result = malloc((ft_strlen(s) + 1) * sizeof(char));
+	if (!result)
+		return (NULL);
+	while (i < ft_strlen(s))
 	{
-		((unsigned char *)s)[i] = 0;
+		result[i] = (*f)(i, s[i]);
 		i++;
 	}
+	result[i] = '\0';
+	return (result);
 }

@@ -1,20 +1,18 @@
-static int	ft_isalpha(int	c)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: guigonza <guigonza@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/18 16:36:49 by guigonza          #+#    #+#             */
+/*   Updated: 2024/09/19 19:29:49 by guigonza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_isalnum(int c)
 {
-	if(!(c >= 65 && c <= 90 || c >= 97 && c <= 122))
-		return (0);
-	else
-		return (1);
-}
-static int	ft_isdigit(int	c)
-{
-	if(!(c >= 48  && c <= 57))
-		return (0);
-	else
-		return (1);
-}
-int	ft_isalnum(int	c)
-{
-	if(ft_isalpha(c) || ft_isdigit(c))
-		return (1);
-	return(0);
+	return (ft_isalpha(c) || ft_isdigit(c));
 }

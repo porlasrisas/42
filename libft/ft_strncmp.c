@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guigonza <guigonza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: guigonza <guigonza@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/18 14:13:18 by guigonza          #+#    #+#             */
-/*   Updated: 2024/09/19 19:29:39 by guigonza         ###   ########.fr       */
+/*   Created: 2024/09/25 14:08:56 by guigonza          #+#    #+#             */
+/*   Updated: 2024/09/26 12:04:04 by guigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t	i;
+	unsigned char		*str1;
+	unsigned char		*str2;
+	size_t				i;
 
 	i = 0;
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
 	if (n == 0)
-		return ;
-	while (i < n)
+		return (0);
+	while (i < (n -1) && str1[i] && str2[i] && (str1[i] == str2[i]))
 	{
-		((unsigned char *)s)[i] = 0;
 		i++;
 	}
+	return (str1[i] - str2[i]);
 }

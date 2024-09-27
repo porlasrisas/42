@@ -1,17 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: guigonza <guigonza@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/25 12:04:11 by guigonza          #+#    #+#             */
+/*   Updated: 2024/09/27 11:08:24 by guigonza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-
-static void	ft_free(char  **s, size_t len)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < len)
-	{
-		free(s[i]);
-		i++;
-	}
-	free(s);
-}
 
 static size_t	ft_count_words(const char *s, char c)
 {
@@ -28,7 +27,6 @@ static size_t	ft_count_words(const char *s, char c)
 		{
 			word = 1;
 			count++;
-			i++;
 		}
 		else if (s[i] == c)
 			word = 0;
@@ -37,18 +35,29 @@ static size_t	ft_count_words(const char *s, char c)
 	return (count);
 }
 
-char	**ft_split(char const *s, char c)
+static char	**ft_free(char **result, size_t len)
 {
-	size_t	start;
+	size_t	i;
+
+	i = 0;
+	while (i < len)
+	{
+		free(result[i]);
+		i++;
+	}
+	free(result);
+	return (NULL);
+}
+
+static char	**ft_cut(const char *s, char **result, char c)
+{
 	size_t	i;
 	size_t	j;
-	char	**result;
+	size_t	start;
 
-	i  = 0;
-	j  = 0;
-	if (!s || !(result = ft_calloc(ft_count_words(s, c) + 1, sizeof(char *))))
-			return (NULL);
-	while (s[i])
+	i = 0;
+	j = 0;
+	while (s[i] != '\0')
 	{
 		if (s[i] != c)
 		{
@@ -57,11 +66,23 @@ char	**ft_split(char const *s, char c)
 				i++;
 			result[j] = ft_substr(s, start, i - start);
 			if (!result[j++])
-				return (ft_free(result, j - 1), NULL);
+				return (ft_free(result, j - 1));
 		}
 		else
 			i++;
 	}
 	result[j] = NULL;
 	return (result);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**result;
+
+	if (!s)
+		return (NULL);
+	result = ft_calloc((ft_count_words(s, c) + 1), sizeof(char *));
+	if (!result)
+		return (NULL);
+	return (ft_cut(s, result, c));
 }

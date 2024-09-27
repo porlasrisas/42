@@ -1,32 +1,35 @@
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: guigonza <guigonza@student.42madrid.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/25 15:39:38 by guigonza          #+#    #+#             */
+/*   Updated: 2024/09/25 15:49:35 by guigonza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-static size_t	ft_strlen(const	char	*s)
+#include "libft.h"
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	i;
+	char		*s2;
+	size_t		i;
+	size_t		j;
 
+	j = ft_strlen(s);
 	i = 0;
-	while(s[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
-char	*ft_substr(char const	*s, unsigned int	start, size_t	len)
-{
-	char *s2;
-	size_t	i;
-
-	i = 0;
-	if(s ==  NULL)
+	if (s == NULL)
 		return (NULL);
-	if(start >= ft_strlen(s))
+	if (start >= j)
 		len = 0;
-	else if(len > ft_strlen(s) - start)
-		len = ft_strlen(s) - start;
+	else if (len > j - start)
+		len = j - start;
 	s2 = (char *)malloc(len + 1);
-	if(s2 == NULL)
+	if (s2 == NULL)
 		return (NULL);
-	while(i < len)
+	while (i < len)
 	{
 		s2[i] = s[start + i];
 		i++;
