@@ -6,7 +6,7 @@
 #    By: guigonza <guigonza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/25 13:18:53 by guigonza          #+#    #+#              #
-#    Updated: 2024/09/27 11:13:07 by guigonza         ###   ########.fr        #
+#    Updated: 2024/09/27 19:52:34 by guigonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,12 @@ SRCS			=	ft_bzero.c \
 
 OBJS			= $(SRCS:.c=.o)
 
-
+BONUS			=	ft_lstnew_bonus.c  ft_lstadd_front_bonus.c \
+					ft_lstlast_bonus.c ft_lstsize_bonus.c \
+					ft_lstadd_back_bonus.c ft_lstdelone_bonus.c \
+					ft_lstclear_bonus.c	ft_lstiter_bonus.c \
+					ft_lstmap_bonus.c 
+OBJS_B			= $(BONUS:.c=.o)
 CC				= cc
 RM				= rm -f
 CFLAGS			= -Wall -Wextra -Werror -g3 -I.
@@ -60,14 +65,14 @@ $(NAME):		$(OBJS)
 				ar rcs $(NAME) $(OBJS)
 
 clean:
-				$(RM) $(OBJS) $(BONUS_OBJS)
+				$(RM) $(OBJS) $(OBJS_B)
 
 fclean:			clean
 				$(RM) $(NAME)
 
 re:				fclean $(NAME)
 
-/*bonus:			$(OBJS) $(BONUS_OBJS)
-				ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
+bonus:			$(NAME) $(OBJS_B) 
+				ar rcs $(NAME) $(OBJS_B) 
 
 .PHONY:			all clean fclean re bonus
