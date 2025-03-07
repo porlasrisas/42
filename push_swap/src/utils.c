@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guigonza <guigonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -32,8 +32,7 @@ int	split_and_store(int argc, char **argv, char **all_args)
 			k = convert_and_store(all_args, k, numbers[j]);
 			if (k == 0)
 				return (0);
-			free(numbers[j]);
-			j++;
+			free(numbers[j++]);
 		}
 		free(numbers);
 		i++;
@@ -85,18 +84,4 @@ int	convert_and_store(char **all_args, int k, char *num_str)
 	if (!all_args[k])
 		return (0);
 	return (k + 1);
-}
-
-void	pb(t_stack *a, t_stack *b)
-{
-	t_list	*tmp;
-
-	if (a->size == 0)
-		return ;
-	tmp = a->top;
-	a->top = a->top->next;
-	a->size--;
-	ft_lstadd_front(&(b->top), tmp);
-	b->size++;
-	ft_printf("pb\n");
 }

@@ -24,9 +24,14 @@ SRC = push_swap.c \
       $(SRC_DIR)/init.c \
       $(SRC_DIR)/operations.c \
 	  $(SRC_DIR)/operations2.c \
+	  $(SRC_DIR)/operations3.c \
       $(SRC_DIR)/utils.c \
 	  $(SRC_DIR)/algorithm.c \
 	  $(SRC_DIR)/algorithm2.c \
+	  $(SRC_DIR)/algorithm_helper.c \
+	  $(SRC_DIR)/algorithm_small.c \
+
+
 
 
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)

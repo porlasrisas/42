@@ -54,7 +54,6 @@ t_stack				*init_stack(void);
 void				push(t_stack *stack, int value);
 int					pop(t_stack *stack);
 int					is_sorted(t_stack *stack);
-void				print_stack(t_stack *stack);
 
 int					parse_arguments(t_stack *a, int argc, char **argv);
 int					check_duplicates(t_stack *stack);
@@ -72,5 +71,9 @@ void				final_sweep(t_stack *a);
 void				sort_all_clusters(t_stack *a, t_stack *b, int *sizes);
 int					find_min(t_stack *a);
 int	                find_position(t_stack *a, int value);
+void				sort_cluster_three(t_stack *b);
+void				sort_small(t_stack *a, t_stack *b);
+
+
 
 #endif

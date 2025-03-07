@@ -33,7 +33,7 @@ void	get_cluster_sizes_recursive(int total_size, int *sizes, int *index)
 	int	size1;
 	int	size2;
 
-	if (total_size <= 3)
+	if (total_size <= 5)
 	{
 		sizes[*index] = total_size;
 		(*index)++;
@@ -59,7 +59,7 @@ int	*get_cluster_sizes(int total_size)
 	int	*sizes;
 	int	index;
 
-	sizes = malloc(total_size * sizeof(int));
+	sizes = malloc(total_size + 1 * sizeof(int));
 	if (!sizes)
 		return (NULL);
 	index = 0;
@@ -102,29 +102,7 @@ void	sort_cluster_recursive(t_stack *b, int cluster_size)
 	}
 	if (cluster_size == 3)
 	{
-		int	first;
-		int	second;
-		int	third;
-
-		first = (int)(long)(b->top->content);
-		second = (int)(long)(b->top->next->content);
-		third = (int)(long)(b->top->next->next->content);
-		if (first > second && second < third && third > first)
-			sb(b);
-		else if (first > second && second > third)
-		{
-			sb(b);
-			rrb(b);
-		}
-		else if (first > second && second < third && third < first)
-			rb(b);
-		else if (first < second && second > third && third > first)
-		{
-			sb(b);
-			rb(b);
-		}
-		else if (first < second && second > third && third < first)
-			rrb(b);
+		sort_cluster_three(b);
 		return ;
 	}
 	half = cluster_size / 2;

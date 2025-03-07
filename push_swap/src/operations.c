@@ -59,5 +59,3 @@ void	pa(t_stack *a, t_stack *b)
 	a->size++;
 	ft_printf("pa\n");
 }
-
-
