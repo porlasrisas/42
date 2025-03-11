@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	final_sweep(t_stack *a)
+/*void	final_sweep(t_stack *a)
 {
 	int	pos;
 
@@ -36,7 +36,7 @@ void	final_sweep(t_stack *a)
 		}
 	}
 }
-
+*/
 void	sort_all_clusters(t_stack *a, t_stack *b, int *sizes)
 {
 	int	i;

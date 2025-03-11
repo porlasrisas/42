@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   operations.c                                       :+:      :+:    :+:   */
+/*   operations1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guigonza <guigonza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: guigonza <guigonza@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 17:58:24 by guigonza          #+#    #+#             */
-/*   Updated: 2025/02/27 19:19:36 by guigonza         ###   ########.fr       */
+/*   Created: 2025/03/10 00:00:00 by guigonza          #+#    #+#             */
+/*   Updated: 2025/03/10 00:00:00 by guigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-static void	swap_stack(t_stack *stack)
+static void	swap_stack(t_stack *s)
 {
 	t_list	*first;
 	t_list	*second;
 	int		tmp;
 
-	if (stack->size < 2)
+	if (s->size < 2)
 		return ;
-	first = stack->top;
+	first = s->top;
 	second = first->next;
 	tmp = (int)(long)(first->content);
 	first->content = second->content;
@@ -30,32 +29,18 @@ static void	swap_stack(t_stack *stack)
 void	sa(t_stack *a)
 {
 	swap_stack(a);
-	ft_printf("sa\n");
+	write(1, "sa\n", 3);
 }
 
 void	sb(t_stack *b)
 {
 	swap_stack(b);
-	ft_printf("sb\n");
+	write(1, "sb\n", 3);
 }
 
 void	ss(t_stack *a, t_stack *b)
 {
 	swap_stack(a);
 	swap_stack(b);
-	ft_printf("ss\n");
-}
-
-void	pa(t_stack *a, t_stack *b)
-{
-	t_list	*tmp;
-
-	if (b->size == 0)
-		return ;
-	tmp = b->top;
-	b->top = b->top->next;
-	b->size--;
-	ft_lstadd_front(&(a->top), tmp);
-	a->size++;
-	ft_printf("pa\n");
+	write(1, "ss\n", 3);
 }

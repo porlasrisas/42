@@ -1,8 +1,8 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*   stack_utils.c                                :+:      :+:    :+:   */
+/*   parse2a.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guigonza <guigonza@student.42.fr>         +#+  +:+       +#+        */
+/*   By: guigonza <guigonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 00:00:00 by guigonza          #+#    #+#             */
 /*   Updated: 2025/03/10 00:00:00 by guigonza         ###   ########.fr       */
@@ -11,29 +11,30 @@
 
 #include "../push_swap.h"
 
-void	push(t_stack *stack, int value)
+void	get_cluster_sizes_recursive(int total_size, int *sizes, int *index)
 {
-	t_list	*node;
-
-	node = ft_lstnew((void *)(long)value);
-	if (!node)
+	if (total_size <= 5)
+	{
+		sizes[*index] = total_size;
+		(*index)++;
 		return ;
-	ft_lstadd_front(&stack->top, node);
-	stack->size++;
+	}
+	sizes[*index] = total_size / 2;
+	(*index)++;
+	get_cluster_sizes_recursive(total_size - (total_size / 2),
+		sizes, index);
 }
 
-
-int	pop(t_stack *stack)
+int	*get_cluster_sizes(int total_size)
 {
-	t_list	*node;
-	int		val;
+	int	*sizes;
+	int	index;
 
-	if (stack->size == 0)
-		return (0);
-	node = stack->top;
-	stack->top = stack->top->next;
-	stack->size--;
-	val = (int)(long)(node->content);
-	free(node);
-	return (val);
+	sizes = malloc((total_size + 1) * sizeof(int));
+	if (!sizes)
+		return (NULL);
+	index = 0;
+	get_cluster_sizes_recursive(total_size, sizes, &index);
+	sizes[index] = 0;
+	return (sizes);
 }

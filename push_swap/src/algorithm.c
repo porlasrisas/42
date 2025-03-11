@@ -27,7 +27,7 @@ int	is_stack_sorted(t_stack *a)
 	}
 	return (1);
 }
-
+/*
 void	get_cluster_sizes_recursive(int total_size, int *sizes, int *index)
 {
 	int	size1;
@@ -59,7 +59,7 @@ int	*get_cluster_sizes(int total_size)
 	int	*sizes;
 	int	index;
 
-	sizes = malloc(total_size + 1 * sizeof(int));
+	sizes = malloc((total_size + 1) * sizeof(int));
 	if (!sizes)
 		return (NULL);
 	index = 0;
@@ -109,3 +109,4 @@ void	sort_cluster_recursive(t_stack *b, int cluster_size)
 	sort_cluster_recursive(b, half);
 	sort_cluster_recursive(b, cluster_size - half);
 }
+*/

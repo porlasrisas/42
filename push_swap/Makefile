@@ -23,14 +23,21 @@ PRINTF_DIR = ft_printf
 SRC = push_swap.c \
       $(SRC_DIR)/init.c \
       $(SRC_DIR)/operations.c \
-	  $(SRC_DIR)/operations2.c \
 	  $(SRC_DIR)/operations3.c \
+	  $(SRC_DIR)/operations4.c \
+	  $(SRC_DIR)/operations5.c \
       $(SRC_DIR)/utils.c \
+	  $(SRC_DIR)/algorithm_value.c \
+	  $(SRC_DIR)/algorithm_value2.c \
+	  $(SRC_DIR)/parse.c \
+	  $(SRC_DIR)/parse2.c \
+	  $(SRC_DIR)/parse3.c \
 	  $(SRC_DIR)/algorithm.c \
-	  $(SRC_DIR)/algorithm2.c \
-	  $(SRC_DIR)/algorithm_helper.c \
-	  $(SRC_DIR)/algorithm_small.c \
+	  $(SRC_DIR)/greedy.c \
 
+
+	  
+	
 
 
 

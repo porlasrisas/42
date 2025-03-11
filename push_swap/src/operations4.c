@@ -1,6 +1,6 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*   operations3.c                                :+:      :+:    :+:   */
+/*   operations4.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guigonza <guigonza@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,47 +11,71 @@
 
 #include "../push_swap.h"
 
-void	rra(t_stack *a)
+void	final_sweep(t_stack *a)
 {
-	t_list	*cur;
-	t_list	*prev;
+	int	min;
+	int	pos;
 
-	if (a->size < 2)
+	min = find_min(a);
+	pos = find_position(a, min);
+	if (pos < 0)
 		return ;
-	cur = a->top;
-	while (cur->next->next)
-		cur = cur->next;
-	prev = cur;
-	cur = cur->next;
-	prev->next = NULL;
-	cur->next = a->top;
-	a->top = cur;
-	write(1, "rra\n", 4);
+	if (pos <= a->size / 2)
+		while (pos-- > 0)
+			ra(a);
+	else
+		while (pos++ < a->size)
+			rra(a);
 }
 
-void	rrb(t_stack *b)
+void	sort_cluster_three(t_stack *b)
 {
-	t_list	*cur;
-	t_list	*prev;
+	int	first;
+	int	second;
+	int	third;
 
-	if (b->size < 2)
-		return ;
-	cur = b->top;
-	while (cur->next->next)
-		cur = cur->next;
-	prev = cur;
-	cur = cur->next;
-	prev->next = NULL;
-	cur->next = b->top;
-	b->top = cur;
-	write(1, "rrb\n", 4);
+	first = (int)(long)(b->top->content);
+	second = (int)(long)(b->top->next->content);
+	third = (int)(long)(b->top->next->next->content);
+	if (first > second && second < third && third > first)
+		sb(b);
+	else if (first > second && second > third)
+	{
+		sb(b);
+		rrb(b);
+	}
+	else if (first > second && second < third && third < first)
+		rb(b);
+	else if (first < second && second > third && third > first)
+	{
+		sb(b);
+		rb(b);
+	}
+	else if (first < second && second > third && first > third)
+		rrb(b);
 }
 
-void	rrr(t_stack *a, t_stack *b)
+void	sort_small(t_stack *a, t_stack *b)
 {
-	rra(a);
-	rrb(b);
-	write(1, "rrr\n", 4);
+	if (a->size == 2)
+	{
+		if (!is_sorted(a))
+			sa(a);
+	}
+	else if (a->size == 3)
+	{
+		if (!is_sorted(a))
+			sort_cluster_three(a);
+	}
+	else if (a->size <= 5)
+	{
+		while (a->size > 3)
+			pb(a, b);
+		if (!is_sorted(a))
+			sort_cluster_three(a);
+		while (b->size > 0)
+			pa(a, b);
+	}
 }
 
 int	find_min(t_stack *a)
