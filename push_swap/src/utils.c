@@ -37,3 +37,41 @@ int	pop(t_stack *stack)
 	free(node);
 	return (val);
 }
+void	rotate_a_to_index(t_stack *a, int index)
+{
+	int	r;
+
+	if (index <= a->size / 2)
+	{
+		while (index-- > 0)
+			ra(a);
+	}
+	else
+	{
+		r = a->size - index;
+		while (r-- > 0)
+			rra(a);
+	}
+}
+void	rotate_b_to_index(t_stack *b, int index)
+{
+	int	r;
+
+	if (index <= b->size / 2)
+	{
+		while (index-- > 0)
+			rb(b);
+	}
+	else
+	{
+		r = b->size - index;
+		while (r-- > 0)
+			rrb(b);
+	}
+}
+int	cost_rotation(int size, int index)
+{
+	if (index <= size / 2)
+		return (index);
+	return (size - index);
+}

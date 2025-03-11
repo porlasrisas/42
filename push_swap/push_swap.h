@@ -76,14 +76,10 @@ int		*define_boundaries(int *sorted, int total, int chunks);
 int		find_position_in_range(t_stack *a, int low, int high);
 void	process_cluster(t_stack *a, t_stack *b, int low, int high);
 void	process_clusters_by_value(t_stack *a, t_stack *b, int chunks);
-/* Reinserción inteligente */
-int		find_target_index(t_stack *a, int val);
-void	rotate_a_to_index(t_stack *a, int index);
-void	smart_reinsertion(t_stack *a, t_stack *b);
-/* Reinserción por máximo */
-int		find_max(t_stack *b);
 int		find_index_in_b(t_stack *b, int val);
-void	reinsertion_max(t_stack *a, t_stack *b);
+void	rotate_a_to_index(t_stack *a, int index);
+int		find_target_index(t_stack *a, int val);
+
 /* Reinserción Greedy Optimizada */
 int		cost_rotation(int size, int index);
 void	perform_optimized_rotations(t_stack *a, t_stack *b, int target_a, int target_b);

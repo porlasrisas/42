@@ -30,12 +30,7 @@ int	find_max(t_stack *a)
 	return (max);
 }
 
-int	cost_rotation(int size, int index)
-{
-	if (index <= size / 2)
-		return (index);
-	return (size - index);
-}
+
 
 static void	combined_rotations(t_stack *a, t_stack *b, int *target_a, int *target_b)
 {
@@ -55,47 +50,22 @@ static void	combined_rotations(t_stack *a, t_stack *b, int *target_a, int *targe
 	}
 }
 
-int	choose_best_index(t_stack *a, t_stack *b)
-{
-	t_list	*cur;
-	int		index;
-	int		best_index;
-	int		best_cost;
-	int		candidate;
-	int		target;
-	int		total_cost;
-
-	if (b->size == 0)
-		return (0);
-	cur = b->top;
-	index = 0;
-	best_index = 0;
-	best_cost = INT_MAX;
-	while (cur)
-	{
-		candidate = (int)(long)(cur->content);
-		target = find_target_index(a, candidate);
-		total_cost = cost_rotation(b->size, index) + cost_rotation(a->size, target);
-		if (total_cost < best_cost)
-		{
-			best_cost = total_cost;
-			best_index = index;
-		}
-		index++;
-		cur = cur->next;
-	}
-	return (best_index);
-}
 
 int	get_value_at(t_stack *b, int index)
 {
 	t_list	*cur;
+	int		value;
 
 	cur = b->top;
 	while (index-- > 0 && cur)
 		cur = cur->next;
-	return (cur ? (int)(long)(cur->content) : 0);
+	if (cur)
+		value = (int)(long)(cur->content);
+	else
+		value = 0;
+	return (value);
 }
+
 
 int	find_target_index(t_stack *a, int val)
 {
@@ -143,36 +113,4 @@ void	greedy_insertion_optimized(t_stack *a, t_stack *b)
 		pa(a, b);
 	}
 	final_sweep(a);
-}
-void	rotate_a_to_index(t_stack *a, int index)
-{
-	int	r;
-
-	if (index <= a->size / 2)
-	{
-		while (index-- > 0)
-			ra(a);
-	}
-	else
-	{
-		r = a->size - index;
-		while (r-- > 0)
-			rra(a);
-	}
-}
-void	rotate_b_to_index(t_stack *b, int index)
-{
-	int	r;
-
-	if (index <= b->size / 2)
-	{
-		while (index-- > 0)
-			rb(b);
-	}
-	else
-	{
-		r = b->size - index;
-		while (r-- > 0)
-			rrb(b);
-	}
 }
